@@ -23,3 +23,16 @@ export function e(type, attributes, ...content) {
     return result;
   }
   
+  export function checkUserNav() {
+      if (sessionStorage.getItem('authToken') != null) {
+          document.getElementById('user').style.display = 'inline-block';
+          document.getElementById('guest').style.display = 'none';
+      } else {
+          document.getElementById('guest').style.display = 'inline-block';
+          document.getElementById('user').style.display = 'none';
+      }
+  }
+  
+  export function setupNav(targetId) {
+      [...document.querySelectorAll('nav a')].forEach(a => a.id === targetId ? a.classList.add('active') : a.classList.remove('active'));
+  }

@@ -1,4 +1,5 @@
-import { e } from './util.js';
+import { e, setupNav } from './util.js';
+
 
 const section = document.getElementById('catalog');
 
