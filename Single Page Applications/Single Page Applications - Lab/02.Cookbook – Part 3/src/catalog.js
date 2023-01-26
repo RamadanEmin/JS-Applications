@@ -1,6 +1,5 @@
 import { e, setupNav } from './util.js';
 
-
 const section = document.getElementById('catalog');
 
 export async function setupCatalog() {
@@ -25,7 +24,7 @@ async function getRecipes() {
 }
 
 function createRecipePreview(recipe) {
-  const result = e('article', { className: 'preview'},
+  const result = e('article', { className: 'preview' },
     e('div', { className: 'title' }, e('h2', {}, recipe.name)),
     e('div', { className: 'small' }, e('img', { src: recipe.img })),
   );

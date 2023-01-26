@@ -2,6 +2,8 @@ import { setupCatalog } from './catalog.js';
 import { setupLogin } from './login.js';
 import { setupRegister } from './register.js';
 import { checkUserNav } from './util.js';
+import { setupCreate } from './create.js';
+
 
 window.addEventListener('load', async () => {
     checkUserNav();
@@ -11,6 +13,7 @@ window.addEventListener('load', async () => {
     document.getElementById('logoutBtn').addEventListener('click', logout);
     document.getElementById('loginBtn').addEventListener('click', setupLogin);
     document.getElementById('registerBtn').addEventListener('click', setupRegister);
+    document.getElementById('createBtn').addEventListener('click', setupCreate);
 });
 
 async function logout() {
