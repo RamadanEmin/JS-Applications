@@ -1,4 +1,3 @@
-import { detailsPage } from "./details.js";
 import { showView, spinner } from "./util.js";
 
 const section = document.querySelector('#home-page');
@@ -9,7 +8,6 @@ catalog.addEventListener('click', (event) => {
         event.preventDefault();
         const id = event.target.dataset.id;
 
-        detailsPage(id);
     }
 });
 
