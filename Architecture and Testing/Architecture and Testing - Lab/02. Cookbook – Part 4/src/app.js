@@ -1,3 +1,4 @@
+import { showCatalog } from './catalog.js';
 import { render } from './dom.js';
 import { home } from './home.js';
 
@@ -5,6 +6,7 @@ document.querySelector('header').addEventListener('click', setupNavigation);
 document.getElementById('views').remove();
 
 const links = {
+    'catalogLink': showCatalog,
     'homeLink': home
 };
 
