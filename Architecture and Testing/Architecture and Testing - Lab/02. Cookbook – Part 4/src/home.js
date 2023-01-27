@@ -2,6 +2,7 @@ import { get } from './api.js';
 import { showCatalog } from './catalog.js';
 import { showDetails } from './details.js';
 import { e } from './dom.js';
+import { setActiveNav } from './util.js';
 
 const section = document.getElementById('home');
 const recipesContainer = document.querySelector('.recent-recipes');

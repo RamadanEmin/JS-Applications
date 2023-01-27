@@ -1,6 +1,8 @@
 import { e } from './dom.js';
 import { showDetails } from './details.js';
 import { get } from './api.js';
+import { setActiveNav } from './util.js';
+
 
 let ctx;
 const section = document.getElementById('catalog');
@@ -8,6 +10,7 @@ const section = document.getElementById('catalog');
 export async function showCatalog(inCtx, page = 1) {
     ctx = inCtx;
     ctx.render(section);
+    setActiveNav('catalogLink');
 
     const recipes = await get('/data/recipes?select=' + encodeURIComponent('_id,name,img'));
     const cards = recipes.map(createRecipePreview);

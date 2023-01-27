@@ -1,11 +1,12 @@
 import { e } from './dom.js';
-import { getRecipeById } from './util.js';
+import { getRecipeById, setActiveNav } from './util.js';
 
 const main = document.querySelector('main');
 const section = document.getElementById('details');
 
 export async function showDetails(id) {
     main.innerHTML = 'Loading&hellip;';
+    setActiveNav();
 
     const recipe = await getRecipeById(id);
     section.innerHTML = '';
@@ -28,7 +29,5 @@ function createRecipeCard(recipe) {
             recipe.steps.map(s => e('p', {}, s))
         ),
     );
-
-    return result;
 
 }
