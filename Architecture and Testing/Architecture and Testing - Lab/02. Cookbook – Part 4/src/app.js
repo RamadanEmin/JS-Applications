@@ -1,4 +1,5 @@
 import { showCatalog } from './catalog.js';
+import { showCreate } from './create.js';
 import { showLogin } from './login.js';
 import { showRegister } from './register.js';
 import { get } from './api.js';
@@ -12,6 +13,7 @@ document.getElementById('views').remove();
 
 const links = {
     'catalogLink': showCatalog,
+    'createLink': showCreate,
     'loginLink': showLogin,
     'registerLink': showRegister,
     'logoutBtn': logout,
