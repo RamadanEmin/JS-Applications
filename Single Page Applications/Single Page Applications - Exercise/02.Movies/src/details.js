@@ -1,3 +1,5 @@
+import { onDelete } from "./delete.js";
+import { editPage } from "./edit.js";
 import { showView, spinner } from "./util.js";
 
 const section = document.querySelector('#movie-example');
@@ -43,6 +45,11 @@ function createMovieCard(movie, user, likes, ownLike) {
     if (likeBtn) {
         likeBtn.addEventListener('click', (e) => likeMovie(e, movie._id, ownLike));
     }
+    else if (editBtn || deleteBtn) {
+        editBtn.addEventListener('click', (e) => editPage(e, movie));
+        deleteBtn.addEventListener('click', (e) => onDelete(e, element, movie));
+    }
+
     return element;
 }
 
