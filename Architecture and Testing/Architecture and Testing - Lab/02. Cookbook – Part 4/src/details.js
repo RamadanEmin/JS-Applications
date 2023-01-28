@@ -1,4 +1,6 @@
+import { deleteReq } from './api.js';
 import { e } from './dom.js';
+import { showEdit } from './edit.js';
 import { getRecipeById, setActiveNav } from './util.js';
 
 const main = document.querySelector('main');
@@ -12,6 +14,12 @@ export async function showDetails(id) {
     section.innerHTML = '';
     main.replaceChildren(section);
     section.appendChild(createRecipeCard(recipe));
+}
+
+async function deleteRecipeById(id) {
+    await deleteReq('/data/recipes/' + id);
+    section.innerHTML = '';
+    section.appendChild(e('article', {}, e('h2', {}, 'Recipe deleted')));
 }
 
 function createRecipeCard(recipe) {
@@ -30,4 +38,20 @@ function createRecipeCard(recipe) {
         ),
     );
 
+    const userId = sessionStorage.getItem('userId');
+    if (userId != null && recipe._ownerId == userId) {
+        result.appendChild(e('div', { className: 'controls' },
+            e('button', { onClick: () => showEdit(recipe._id) }, '\u270E Edit'),
+            e('button', { onClick: onDelete }, '\u2716 Delete'),
+        ));
+    }
+
+    return result;
+
+    function onDelete() {
+        const confirmed = confirm(`Are you sure you want to delete ${recipe.name}?`);
+        if (confirmed) {
+            deleteRecipeById(recipe._id);
+        }
+    }
 }
