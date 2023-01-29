@@ -3,6 +3,7 @@ import { render } from './dom.js';
 export function createNav(main, navbar) {
     const views = {};
     const links = {};
+    const forms = {};
 
     setupNavigation();
     setupForms();
@@ -10,6 +11,8 @@ export function createNav(main, navbar) {
     const navigator = {
         registerView,
         goTo,
+        setUserNav,
+        registerForm
     };
 
     return navigator;
@@ -43,6 +46,34 @@ export function createNav(main, navbar) {
         };
         if (navId) {
             links[navId] = name;
+        }
+    }
+
+    function setUserNav() {
+        if (sessionStorage.getItem('userToken') != null) {
+            document.getElementById('user').style.display = 'inline-block';
+            document.getElementById('guest').style.display = 'none';
+        } else {
+            document.getElementById('user').style.display = 'none';
+            document.getElementById('guest').style.display = 'inline-block';
+        }
+    }
+
+    function setupForms() {
+        document.body.addEventListener('submit', onSubmit);
+    }
+
+    function registerForm(name, handler) {
+        forms[name] = handler;
+    }
+
+    function onSubmit(ev) {
+        const handler = forms[ev.target.id];
+        if (typeof handler == 'function') {
+            ev.preventDefault();
+            const formData = new FormData(ev.target);
+            const body = [...formData.entries()].reduce((p, [k, v]) => Object.assign(p, { [k]: v }), {});
+            handler(body);
         }
     }
 }
