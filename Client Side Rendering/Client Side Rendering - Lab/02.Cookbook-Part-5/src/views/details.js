@@ -1,12 +1,11 @@
 import { html } from '../dom.js';
-import { getRecipeById } from '../api/data.js';
 
 const detailsTemplate = (recipe, isOwner, nav) => html`
 <section id="details">
-    ${recipeCard(recipe, isOwner, nav.goTo, )}
+    ${recipeCard(recipe, isOwner, nav.goTo)}
 </section>`;
 
-const recipeCard = (recipe, isOwner, goTo, ) => html`
+const recipeCard = (recipe, isOwner, goTo) => html`
 <article>
     <h2>${recipe.name}</h2>
     <div class="band">
