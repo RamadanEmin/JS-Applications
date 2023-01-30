@@ -1,4 +1,4 @@
-import { e, html } from '../dom.js';
+import { html } from '../dom.js';
 import { getRecipes, getRecipeCount } from '../api/data.js';
 
 const catalogTemplate = (recipes, goTo, page, pages) => html`

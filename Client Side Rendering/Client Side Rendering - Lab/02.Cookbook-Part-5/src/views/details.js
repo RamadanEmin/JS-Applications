@@ -1,5 +1,6 @@
 import { html } from '../dom.js';
 import { getRecipeById, deleteRecipeById } from '../api/data.js';
+import { showComments } from './comments.js';
 
 const detailsTemplate = (recipe, isOwner, nav, onDelete) => html`
 <section id="details">
