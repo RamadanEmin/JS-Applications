@@ -41,3 +41,11 @@ export async function getRecipeById(id) {
 export async function createRecipe(recipe) {
     return await api.post(endpoints.RECIPES, recipe);
 }
+
+export async function editRecipe(id, recipe) {
+    return await api.put(endpoints.RECIPE_BY_ID + id, recipe);
+}
+
+export async function deleteRecipeById(id) {
+    return await api.delete(endpoints.RECIPE_BY_ID + id);
+}
