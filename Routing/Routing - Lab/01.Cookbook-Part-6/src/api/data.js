@@ -6,6 +6,7 @@ const endpoints = {
     RECIPE_LIST: 'data/recipes?select=' + encodeURIComponent('_id,name,img'),
     RECIPE_COUNT: 'data/recipes?count',
     RECENT_RECIPES: 'data/recipes?select=' + encodeURIComponent('_id,name,img') + '&sortBy=' + encodeURIComponent('_createdOn desc'),
+    RECIPES: 'data/recipes',
     RECIPE_BY_ID: 'data/recipes/',
 };
 
@@ -35,4 +36,8 @@ export async function getRecent() {
 
 export async function getRecipeById(id) {
     return await api.get(endpoints.RECIPE_BY_ID + id);
+}
+
+export async function createRecipe(recipe) {
+    return await api.post(endpoints.RECIPES, recipe);
 }
