@@ -11,6 +11,7 @@ import { setupRegister, onRegisterSubmit } from './views/register.js';
 import { setupDetails } from './views/details.js';
 import { setupEdit, onEditSubmit, setupDeleted } from './views/edit.js';
 
+
 window.addEventListener('load', async () => {
     const main = document.querySelector('main');
     const navbar = document.querySelector('nav');
@@ -48,6 +49,7 @@ window.addEventListener('load', async () => {
     navigation.registerForm('editForm', onEditSubmit, (recipeId) => page.redirect('/details/' + recipeId));
 
     page('/deleted/:id', views.deletedView);
+
 
     document.getElementById('logoutBtn').addEventListener('click', logout);
 
