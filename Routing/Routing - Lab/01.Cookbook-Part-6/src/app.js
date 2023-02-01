@@ -7,6 +7,7 @@ import { setupHome } from './views/home.js';
 import { setupCatalog } from './views/catalog.js';
 import { setupLogin, onLoginSubmit } from './views/login.js';
 import { setupRegister, onRegisterSubmit } from './views/register.js';
+import { setupDetails } from './views/details.js';
 
 window.addEventListener('load', async () => {
     const main = document.querySelector('main');
@@ -16,6 +17,7 @@ window.addEventListener('load', async () => {
     const views = {
         homeView: navigation.registerView('home', setupHome),
         catalogView: navigation.registerView('catalog', setupCatalog, 'catalogLink'),
+        detailsView: navigation.registerView('details', setupDetails),
         loginView: navigation.registerView('login', setupLogin, 'loginLink'),
         registerView: navigation.registerView('register', setupRegister, 'registerLink'),
     };
@@ -25,6 +27,8 @@ window.addEventListener('load', async () => {
     page('/catalog', views.catalogView);
     page('/catalog/:page', views.catalogView);
     navigation.registerForm('searchForm', (data) => page.redirect('/catalog?search=' + data.search) );
+
+    page('/details/:id', views.detailsView);
 
     page('/login', views.loginView);
     navigation.registerForm('loginForm', onLoginSubmit, () => { page.redirect('/'); navigation.setUserNav(); });
