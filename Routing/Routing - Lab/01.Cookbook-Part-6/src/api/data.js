@@ -8,6 +8,10 @@ const endpoints = {
     RECENT_RECIPES: 'data/recipes?select=' + encodeURIComponent('_id,name,img') + '&sortBy=' + encodeURIComponent('_createdOn desc'),
 };
 
+export const login = api.login.bind(api);
+export const regster = api.register.bind(api);
+export const logout = api.logout.bind(api);
+
 export async function getRecipes(page = 1, search) {
     let url = endpoints.RECIPE_LIST + `&offset=${(page - 1) * 5}&pageSize=5`;
     if (search) {
