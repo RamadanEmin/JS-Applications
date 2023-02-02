@@ -3,6 +3,7 @@ import { page, render } from './lib.js';
 import { getUserData, removeUserData } from './util.js';
 
 import { catalogView } from './views/catalog.js';
+import { createView } from './views/create.js';
 import { loginView } from './views/login.js';
 import { registerView } from './views/register.js';
 
@@ -12,6 +13,7 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 
 page(decorateContext);
 page('/', catalogView);
+page('/create', createView);
 page('/login', loginView);
 page('/register', registerView);
 page('/my-furniture', catalogView);
