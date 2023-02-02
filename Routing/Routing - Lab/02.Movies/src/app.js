@@ -1,6 +1,7 @@
 import { page, render } from "./lib.js";
-import { getUserData } from "./util.js";
+import { getUserData, loadMovie } from "./util.js";
 import { catalogPage } from "./views/catalog.js";
+import { detailsPage } from "./views/details.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
 
@@ -8,10 +9,9 @@ const root = document.querySelector('main');
 
 page(decorateContext);
 page('/', catalogPage);
-page('/create', createPage);
+page('/details/:id',loadMovie, detailsPage);
 page('/login', loginPage);
 page('/register', registerPage);
-
 updateUserNav();
 page.start();
 

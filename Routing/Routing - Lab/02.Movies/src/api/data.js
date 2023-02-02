@@ -12,3 +12,7 @@ const endpoints = {
 export async function getAllMovies() {
     return api.get(endpoints.allMovies);
 }
+
+export async function getMovieById(id) {
+    return api.get(endpoints.movieById + id);
+}
