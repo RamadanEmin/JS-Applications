@@ -1,17 +1,22 @@
 import { page, render } from "./lib.js";
 import { getUserData, loadMovie } from "./util.js";
 import { catalogPage } from "./views/catalog.js";
+import { createPage } from "./views/create.js";
 import { detailsPage } from "./views/details.js";
+import { editPage } from "./views/edit.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
 
 const root = document.querySelector('main');
 
 page(decorateContext);
-page('/', catalogPage);
+page('/home', catalogPage);
+page('/create', createPage);
 page('/details/:id',loadMovie, detailsPage);
+page('/edit/:id',loadMovie, editPage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/', '/home');
 updateUserNav();
 page.start();
 
