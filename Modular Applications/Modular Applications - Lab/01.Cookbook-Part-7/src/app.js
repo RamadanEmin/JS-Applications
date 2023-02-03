@@ -9,6 +9,8 @@ import { setupCreate, onCreateSubmit } from './views/create.js';
 import { setupLogin, onLoginSubmit } from './views/login.js';
 import { setupRegister, onRegisterSubmit } from './views/register.js';
 import { setupDetails } from './views/details.js';
+import { setupEdit, onEditSubmit, setupDeleted } from './views/edit.js';
+
 
 window.addEventListener('load', async () => {
     const main = document.querySelector('main');
@@ -22,6 +24,8 @@ window.addEventListener('load', async () => {
         loginView: navigation.registerView('login', setupLogin, 'loginLink'),
         registerView: navigation.registerView('register', setupRegister, 'registerLink'),
         createView: navigation.registerView('create', setupCreate, 'createLink'),
+        editView: navigation.registerView('edit', setupEdit),
+        deletedView: navigation.registerView('deleted', setupDeleted)
     };
 
     page('/', views.homeView);
@@ -40,6 +44,12 @@ window.addEventListener('load', async () => {
 
     page('/create', views.createView);
     navigation.registerForm('createForm', onCreateSubmit, (recipeId) => page.redirect('/details/' + recipeId));
+
+    page('/edit/:id', views.editView);
+    navigation.registerForm('editForm', onEditSubmit, (recipeId) => page.redirect('/details/' + recipeId));
+
+    page('/deleted/:id', views.deletedView);
+
 
     document.getElementById('logoutBtn').addEventListener('click', logout);
 

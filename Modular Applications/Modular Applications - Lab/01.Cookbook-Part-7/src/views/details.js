@@ -1,12 +1,13 @@
 import { html } from '../dom.js';
-import { getRecipeById } from '../api/data.js';
+import { getRecipeById, deleteRecipeById } from '../api/data.js';
 
-const detailsTemplate = (recipe, isOwner) => html`
+
+const detailsTemplate = (recipe, isOwner, onDelete) => html`
 <section id="details">
-    ${recipeCard(recipe, isOwner)}
+    ${recipeCard(recipe, isOwner, onDelete)}
 </section>`;
 
-const recipeCard = (recipe, isOwner) => html`
+const recipeCard = (recipe, isOwner, onDelete) => html`
 <article>
     <h2>${recipe.name}</h2>
     <div class="band">
@@ -26,7 +27,7 @@ const recipeCard = (recipe, isOwner) => html`
         ? html`
     <div class="controls">
         <a class="actionLink" href=${'/edit/' + recipe._id}>\u270E Edit</a>
-        <a class="actionLink" href="javascript:void(0)">\u2716 Delete</a>
+        <a class="actionLink" href="javascript:void(0)" @click=${onDelete}>\u2716 Delete</a>
     </div>`
         : ''}
 </article>`;
@@ -42,6 +43,18 @@ export function setupDetails() {
         const userId = sessionStorage.getItem('userId');
         const isOwner = userId != null && recipe._ownerId == userId;
 
-        return detailsTemplate(recipe, isOwner);
+        return detailsTemplate(recipe, isOwner, () => onDelete(recipe, () => context.page.redirect('/deleted/' + id)));
+    }
+
+    async function onDelete(recipe, onSuccess) {
+        const confirmed = confirm(`Are you sure you want to delete ${recipe.name}?`);
+        if (confirmed) {
+            try {
+                await deleteRecipeById(recipe._id);
+                onSuccess();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
     }
 }
