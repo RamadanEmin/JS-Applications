@@ -8,6 +8,7 @@ export const logout = api.logout;
 const endpoints = {
   create: '/data/catalog',
   all: '/data/catalog',
+  details: '/data/catalog/',
   my: (id) => `/data/catalog?where=_ownerId%3D%22${id}%22`
 };
 
@@ -17,6 +18,10 @@ export async function createFurniture(data) {
 
 export async function getAll() {
   return api.get(endpoints.all);
+}
+
+export async function getDetails(id) {
+  return api.get(endpoints.details + id);
 }
 
 export async function getMyFurnitures(userId) {

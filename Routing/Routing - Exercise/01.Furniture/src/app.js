@@ -4,6 +4,7 @@ import { getUserData, removeUserData } from './util.js';
 
 import { catalogView } from './views/catalog.js';
 import { createView } from './views/create.js';
+import { detailsView } from './views/details.js';
 import { loginView } from './views/login.js';
 import { registerView } from './views/register.js';
 
@@ -14,6 +15,7 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 page(decorateContext);
 page('/', catalogView);
 page('/create', createView);
+page('/details/:id', detailsView);
 page('/login', loginView);
 page('/register', registerView);
 page('/my-furniture', catalogView);
