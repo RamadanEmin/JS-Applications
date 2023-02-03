@@ -23,12 +23,12 @@ const recipeCard = (recipe, isOwner) => html`
         ${recipe.steps.map(s => html`<p>${s}</p>`)}
     </div>
     ${isOwner
-    ? html`
+        ? html`
     <div class="controls">
         <a class="actionLink" href=${'/edit/' + recipe._id}>\u270E Edit</a>
         <a class="actionLink" href="javascript:void(0)">\u2716 Delete</a>
     </div>`
-    : ''}
+        : ''}
 </article>`;
 
 
@@ -44,5 +44,4 @@ export function setupDetails() {
 
         return detailsTemplate(recipe, isOwner);
     }
-
 }

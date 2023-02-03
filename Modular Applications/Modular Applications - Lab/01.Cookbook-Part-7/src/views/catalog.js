@@ -1,6 +1,7 @@
 import { html } from '../dom.js';
 import { getRecipes, getRecipeCount } from '../api/data.js';
 
+
 const catalogTemplate = (recipes, page, pages, search) => html`
 <section id="catalog">
     <div class="section-title">
