@@ -1,5 +1,4 @@
-import { deleteItem, getById } from '../api/data.js';
-import { showModal } from '../common/modal.js';
+import { getById } from '../api/data.js';
 import { html, until } from '../lib.js';
 import { getUserData } from '../util.js';
 
@@ -31,29 +30,20 @@ const itemTemplate = (item, isOwner,onDelete) => html`
     ${isOwner 
         ? html`<div>
                     <a href=${`/edit/${item._id}`} class="btn btn-info">Edit</a>
-                    <a @click=${onDelete} href="javascript:void(0)" class="btn btn-red">Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-red">Delete</a>
                </div>`
         : null}
 </div>`;
 
 export function detailsPage(ctx) {
-    ctx.render(detailsTemplate(loadItem(ctx.params.id, onDelete)));
-
-    async function onDelete(){
-        const choice = await showModal('Are you sure you want to delete this item?');
-
-        if (choice) {
-            await deleteItem(ctx.params.id);
-            ctx.page.redirect('/');
-        }
-    }
+    ctx.render(detailsTemplate(loadItem(ctx.params.id)));
 }
 
-async function loadItem(id,onDelete) {
+async function loadItem(id) {
     const item = await getById(id);
 
     const userData=getUserData();
     const isOwner=userData.id==item._ownerId;
 
-    return itemTemplate(item,isOwner,onDelete);
+    return itemTemplate(item,isOwner);
 }
