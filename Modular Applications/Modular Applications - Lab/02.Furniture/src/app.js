@@ -2,7 +2,9 @@ import { logout } from './api/data.js';
 import { page, render } from './lib.js';
 import { getUserData } from './util.js';
 import { catalogPage } from './views/catalog.js';
+import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 
@@ -12,6 +14,8 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 page(decorateContext);
 page('/', catalogPage);
 page('/details/:id', detailsPage);
+page('/create', createPage);
+page('/edit/:id', editPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/my-furniture', catalogPage);
