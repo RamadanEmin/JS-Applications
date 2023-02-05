@@ -17,3 +17,11 @@ export async function getTeams() {
     teams.forEach(t => t.memberCount = members.filter(m => m.teamId == t._id).length);
     return teams;
 }
+
+export async function createTeam(team) {
+    const result = await api.post(host + '/data/teams', team);
+    const request = await requestToJoin(result._id);
+    await approveMembership(request);
+    
+    return result;
+}
