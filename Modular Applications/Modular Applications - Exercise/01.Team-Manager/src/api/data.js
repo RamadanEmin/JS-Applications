@@ -6,3 +6,14 @@ api.settings.host = host;
 export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
+
+// Implement application-specific requests
+
+// Team Collection
+
+export async function getTeams() {
+    const teams = await api.get(host + '/data/teams');
+    const members = await getMembers(teams.map(t => t._id));
+    teams.forEach(t => t.memberCount = members.filter(m => m.teamId == t._id).length);
+    return teams;
+}

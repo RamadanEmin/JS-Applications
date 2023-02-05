@@ -3,6 +3,7 @@ import { render } from '../node_modules/lit-html/lit-html.js';
 
 import { logout as apiLogout } from './api/data.js';
 import { homePage } from './views/home.js';
+import { browsePage } from './views/browse.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 
@@ -11,6 +12,7 @@ document.getElementById('logoutBtn').addEventListener('click', logout);
 
 page('/', decorateContext, homePage);
 page('/index.html', decorateContext, homePage);
+page('/browse', decorateContext, browsePage);
 page('/login', decorateContext, loginPage);
 page('/register', decorateContext, registerPage);
 
