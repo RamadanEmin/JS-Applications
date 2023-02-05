@@ -18,10 +18,18 @@ export async function getTeams() {
     return teams;
 }
 
+export async function getTeamById(id) {
+    return await api.get(host + '/data/teams/' + id);
+}
+
 export async function createTeam(team) {
     const result = await api.post(host + '/data/teams', team);
     const request = await requestToJoin(result._id);
     await approveMembership(request);
     
     return result;
+}
+
+export async function editTeam(id, team) {
+    return await api.put(host + '/data/teams/' + id, team);
 }
