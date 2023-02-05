@@ -9,6 +9,7 @@ import { registerPage } from './views/register.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+import { myTeamsPage } from './views/myTeams.js';
 
 const main = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', logout);
@@ -16,6 +17,7 @@ document.getElementById('logoutBtn').addEventListener('click', logout);
 page('/', decorateContext, homePage);
 page('/index.html', decorateContext, homePage);
 page('/browse', decorateContext, browsePage);
+page('/my-teams', decorateContext, myTeamsPage);
 page('/login', decorateContext, loginPage);
 page('/register', decorateContext, registerPage);
 page('/create', decorateContext, createPage);

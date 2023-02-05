@@ -18,6 +18,15 @@ export async function getTeams() {
     return teams;
 }
 
+export async function getMyTeams() {
+    const userId = sessionStorage.getItem('userId');
+    const teamMembership = await api.get(host + `/data/members?where=_ownerId%3D%22${userId}%22%20AND%20status%3D%22member%22&load=team%3DteamId%3Ateams`)
+    const teams = teamMembership.map(r => r.team);
+    const members = await getMembers(teams.map(t => t._id));
+    teams.forEach(t => t.memberCount = members.filter(m => m.teamId == t._id).length);
+    return teams;
+}
+
 export async function getTeamById(id) {
     return await api.get(host + '/data/teams/' + id);
 }
