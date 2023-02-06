@@ -5,6 +5,7 @@ import { createPage } from "./view/create.js";
 import { homePage } from "./view/home.js";
 import { loginPage } from "./view/login.js";
 import { registerPage } from "./view/register.js";
+import { topicsPage } from "./view/topics.js";
 
 const root = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', onLogout);
@@ -12,6 +13,7 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 page(decoreteContext);
 
 page('/', homePage);
+page('/topics', topicsPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
