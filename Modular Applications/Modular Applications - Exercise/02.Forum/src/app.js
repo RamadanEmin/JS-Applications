@@ -2,6 +2,7 @@ import { logout } from "./api/data.js";
 import { page, render } from "./lib.js";
 import { getUserData } from "./util.js";
 import { createPage } from "./view/create.js";
+import { detailsPage } from "./view/details.js";
 import { homePage } from "./view/home.js";
 import { loginPage } from "./view/login.js";
 import { registerPage } from "./view/register.js";
@@ -14,6 +15,7 @@ page(decoreteContext);
 
 page('/', homePage);
 page('/topics', topicsPage);
+page('/topic/:id', detailsPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
