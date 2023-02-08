@@ -6,7 +6,8 @@ const endpoints = {
     carById: '/data/cars/',
     create: '/data/cars',
     edit: '/data/cars/',
-    delete: '/data/cars/'
+    delete: '/data/cars/',
+    search: '/data/cars?where=year%3D'
 };
 
 export async function getAllListings() {
@@ -19,6 +20,10 @@ export async function getMyListings(userId) {
 
 export async function getCarById(id) {
     return api.get(endpoints.carById + id);
+}
+
+export async function searchListings(query) {
+    return api.get(endpoints.search + query);
 }
 
 export async function createCar(data) {

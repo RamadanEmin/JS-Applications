@@ -11,6 +11,7 @@ import { registerPage } from './views/register.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+import { searchPage } from './views/search.js';
 import { logout } from './api/users.js';
 
 page(addSession);
@@ -25,6 +26,7 @@ page('/register', registerPage);
 page('/create', createPage);
 page('/details/:id', detailsPage);
 page('/edit/:id', editPage);
+page('/search', searchPage);
 page('/logout', onLogout);
 
 page.start();
