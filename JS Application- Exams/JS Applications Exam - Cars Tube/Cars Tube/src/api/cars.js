@@ -5,6 +5,8 @@ const endpoints = {
     myListings: (userId) => `/data/cars?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
     carById: '/data/cars/',
     create: '/data/cars',
+    edit: '/data/cars/',
+    delete: '/data/cars/'
 };
 
 export async function getAllListings() {
@@ -21,4 +23,12 @@ export async function getCarById(id) {
 
 export async function createCar(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function editCar(id, data) {
+    return api.put(endpoints.edit + id, data);
+}
+
+export function deleteListings(id) {
+    return api.del(endpoints.delete + id);
 }
