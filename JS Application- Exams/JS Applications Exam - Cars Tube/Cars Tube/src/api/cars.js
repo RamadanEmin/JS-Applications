@@ -1,0 +1,14 @@
+import * as api from './api.js';
+
+const endpoints = {
+    allListings: '/data/cars?sortBy=_createdOn%20desc',
+    myListings: (userId) => `/data/cars?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`
+};
+
+export async function getAllListings() {
+    return api.get(endpoints.allListings);
+}
+
+export async function getMyListings(userId) {
+    return api.get(endpoints.myListings(userId));
+}
