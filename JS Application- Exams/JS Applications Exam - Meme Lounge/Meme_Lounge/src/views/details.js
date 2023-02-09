@@ -1,8 +1,8 @@
-import { getMemeByID } from '../api/data.js';
+import { deleteById, getMemeByID } from '../api/data.js';
 import { html } from '../lib.js';
 import { getUserData } from '../util.js';
 
-const detailsTemplate = (meme, isOwner) => html`
+const detailsTemplate = (meme, isOwner, onDelete) => html`
 <section id="meme-details">
     <h1>Meme Title: ${meme.title}</h1>
     <div class="meme-details">
@@ -14,7 +14,7 @@ const detailsTemplate = (meme, isOwner) => html`
             <p>${meme.description}</p>
             ${isOwner 
                 ?html`<a class="button warning" href="/edit/${meme._id}">Edit</a>
-                      <button class="button danger">Delete</button>`
+                      <button @click=${onDelete} class="button danger">Delete</button>`
                 :null}
         </div>
     </div>
@@ -26,5 +26,14 @@ export async function detailsPage(ctx) {
     const userData = getUserData();
     const isOwner = userData && meme._ownerId == userData.id;
 
-    ctx.render(detailsTemplate(meme, isOwner));
+    ctx.render(detailsTemplate(meme, isOwner, onDelete));
+
+    async function onDelete() {
+        const choice = confirm('Are you sure you want to deletethis meme FOREVER?');
+
+        if(choice) {
+            await deleteById(ctx.params.id);
+            ctx.page.redirect('/memes');
+        }
+    }
 }
