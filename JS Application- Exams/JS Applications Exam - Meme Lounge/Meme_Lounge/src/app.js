@@ -6,6 +6,7 @@ import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { logout } from './api/data.js';
 import { getUserData } from './util.js';
+import { createPage } from './views/create.js';
 import { profilePage } from './views/profile.js';
 
 const root = document.querySelector('main');
@@ -16,6 +17,7 @@ page('/', homePage);
 page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/create', createPage);
 page('/profile', profilePage);
 
 updateUserNav();

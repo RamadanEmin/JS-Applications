@@ -6,7 +6,8 @@ export const logout = api.logout;
 
 const endpoints = {
     myMemes: (userId) => `/data/memes?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
-    allMemes: '/data/memes?sortBy=_createdOn%20desc'
+    allMemes: '/data/memes?sortBy=_createdOn%20desc',
+    createMeme: '/data/memes'
 };
 
 export async function getMyMemes(userId) {
@@ -15,4 +16,8 @@ export async function getMyMemes(userId) {
 
 export async function getAllMemes() {
     return api.get(endpoints.allMemes);
+}
+
+export async function createMeme(meme) {
+    return api.post(endpoints.createMeme, meme);
 }
