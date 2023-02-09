@@ -1,18 +1,22 @@
 import { page, render } from './lib.js';
 
 import { homePage } from './views/home.js';
+import { catalogPage } from './views/catalog.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { logout } from './api/data.js';
 import { getUserData } from './util.js';
+import { profilePage } from './views/profile.js';
 
 const root = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', onLogout);
 
 page(decorateContext);
 page('/', homePage);
+page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/profile', profilePage);
 
 updateUserNav();
 page.start();
