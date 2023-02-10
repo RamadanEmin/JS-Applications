@@ -5,6 +5,7 @@ import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 import { myBooksPage } from './views/my-books.js';
 
 page(decorateContext);
@@ -13,6 +14,7 @@ page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
 page('/details/:id', detailsPage);
+page('/edit/:id', editPage);
 page('/my-books', myBooksPage);
 
 updateUserNav();

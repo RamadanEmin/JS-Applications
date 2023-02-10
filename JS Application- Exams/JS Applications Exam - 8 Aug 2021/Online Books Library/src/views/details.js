@@ -10,7 +10,6 @@ const detailsTemplate = (book, isOwner) => html`
         <p class="img"><img src=${book.imageUrl}></p>
         <div class="actions">
             ${bookControlsTemplate(book, isOwner, onDelete)}
-
             <div class="likes">
                 <img class="hearts" src="/images/heart.png">
                 <span id="total-likes">Likes: </span>
@@ -40,5 +39,4 @@ export async function detailsPage(ctx) {
     const isOwner = userData && userData.id == book._ownerId;
 
     ctx.render(detailsTemplate(book, isOwner));
-
 } 
