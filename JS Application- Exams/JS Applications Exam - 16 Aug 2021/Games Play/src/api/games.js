@@ -3,7 +3,8 @@ import * as api from './api.js';
 const endpoints = {
     recent: '/data/games?sortBy=_createdOn%20desc&distinct=category',
     games: '/data/games?sortBy=_createdOn%20desc',
-    create: '/data/games'
+    create: '/data/games',
+    ById: '/data/games/',
 };
 
 export async function getRecent() {
@@ -12,6 +13,10 @@ export async function getRecent() {
 
 export async function getAll() {
     return api.get(endpoints.games);
+}
+
+export async function getById(id) {
+    return api.get(endpoints.ById + id);
 }
 
 export async function create(data) {
