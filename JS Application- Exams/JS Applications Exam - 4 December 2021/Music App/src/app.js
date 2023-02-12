@@ -6,6 +6,7 @@ import { addSession } from './middlewares/session.js';
 import { logout } from './api/users.js';
 import { homePage } from './views/home.js';
 import { catalogPage } from './views/catalog.js';
+import { createPage } from './views/create.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 
@@ -17,6 +18,7 @@ page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', onLogout);
 page('/catalog', catalogPage);
+page('/create', createPage);
 
 page.start();
 
