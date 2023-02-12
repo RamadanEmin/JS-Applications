@@ -32,3 +32,4 @@ export async function update(id, data) {
 export async function deleteById(id) {
     return api.del(endpoints.deleteById + id);
 }
+

@@ -1,7 +1,9 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as gameService from '../api/games.js';
+import { commentFormView } from './commentForm.js';
+import { commentsView } from './comments.js';
 
-const detailsTemplate = (game, onDelete) => html`
+const detailsTemplate = (game, commentsSection, commentFormSection, onDelete) => html`
 <section id="game-details">
     <h1>Game Details</h1>
     <div class="info-section">
@@ -15,6 +17,8 @@ const detailsTemplate = (game, onDelete) => html`
 
         <p class="text">${game.summary}</p>
 
+        ${commentsSection}
+
         ${game.isOwner
             ? html `<div class="buttons">
                         <a href="/edit/${game._id}" class="button">Edit</a>
@@ -23,17 +27,24 @@ const detailsTemplate = (game, onDelete) => html`
             : nothing}
     </div>
 
+    ${commentFormSection}
+
 </section>`;
 
 export async function detailsPage(ctx) {
     const gameId = ctx.params.id;
-    const game = await gameService.getById(gameId);
+    const [game, commentsSection] = await Promise.all([
+         gameService.getById(gameId),
+         commentsView(gameId)
+    ]);
 
     if (ctx.user) {
         game.isOwner = ctx.user._id == game._ownerId;
     }
 
-    ctx.render(detailsTemplate(game, onDelete));
+    const commentFormSection = commentFormView(ctx, game.isOwner);
+
+    ctx.render(detailsTemplate(game, commentsSection, commentFormSection, onDelete));
 
     async function onDelete(){
         const choice = confirm(`Are you sure you want to delete ${game.title} game?`);
