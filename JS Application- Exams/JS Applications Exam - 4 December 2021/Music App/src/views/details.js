@@ -1,7 +1,7 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as albumsServices from '../api/data.js';
 
-const detailsTemplate = (album) => html`
+const detailsTemplate = (album, onDelete) => html`
 <section id="detailsPage">
     <div class="wrapper">
         <div class="albumCover">
@@ -20,7 +20,7 @@ const detailsTemplate = (album) => html`
                 ${album.isOwner
                 ? html`<div class="actionBtn">
                     <a href="/edit/${album._id}" class="edit">Edit</a>
-                    <a href="javascript:void(0)" class="remove">Delete</a>
+                    <a @click=${onDelete} href="javascript:void(0)" class="remove">Delete</a>
                 </div>`
                 : nothing}
             </div>
@@ -36,6 +36,13 @@ export async function detailsPage(ctx) {
         album.isOwner = album._ownerId == ctx.user._id;
     }
 
-    ctx.render(detailsTemplate(album));
+    ctx.render(detailsTemplate(album, onDelete));
 
+    async function onDelete() {
+        const choice = confirm(`Are you sure you want to delete album ${album.name}?`);
+        if (choice) {
+            await albumsServices.deleteAlbumById(albumId);
+            ctx.page.redirect('/catalog');
+        }
+    }
 }
