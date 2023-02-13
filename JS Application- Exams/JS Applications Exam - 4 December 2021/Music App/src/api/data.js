@@ -17,6 +17,10 @@ export async function getAlbumById(id) {
     return api.get(endpoints.albumById + id);
 }
 
+export async function searchAlbums(searchText) {
+    return api.get(endpoints.search + encodeURIComponent(`name LIKE "${searchText}"`));
+}
+
 export async function createAlbum(data) {
     return api.post(endpoints.crete, data);
 }
