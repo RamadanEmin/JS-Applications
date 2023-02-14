@@ -5,6 +5,7 @@ import { addSession } from './middlewares/session.js';
 import { createPage } from './views/create.js';
 import { homePage } from './views/home.js';
 import { loginPage } from './views/login.js';
+import { profilePage } from './views/profile.js';
 import { registerPage } from './views/register.js';
 import { logout } from './api/users.js';
 
@@ -14,6 +15,7 @@ page(addRender);
 page('/', homePage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/profile', profilePage);
 page('/create', createPage);
 page('/logout', onLogout);
 

@@ -2,11 +2,16 @@ import * as api from './api.js';
 
 const endpoints = {
     allTheaters: '/data/theaters?sortBy=_createdOn%20desc&distinct=title',
+    profile: (userId) => `/data/theaters?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
     create: '/data/theaters'
 };
 
 export async function getAllTheaters() {
     return api.get(endpoints.allTheaters);
+}
+
+export async function getProfile(userId) {
+    return api.get(endpoints.profile(userId));
 }
 
 export async function createEvent(data) {
