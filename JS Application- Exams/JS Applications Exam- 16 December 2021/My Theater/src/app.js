@@ -4,6 +4,7 @@ import { addRender } from './middlewares/render.js';
 import { addSession } from './middlewares/session.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 import { homePage } from './views/home.js';
 import { loginPage } from './views/login.js';
 import { profilePage } from './views/profile.js';
@@ -19,6 +20,7 @@ page('/register', registerPage);
 page('/profile', profilePage);
 page('/create', createPage);
 page('/details/:id', detailsPage);
+page('/edit/:id', editPage);
 page('/logout', onLogout);
 
 page.start();

@@ -5,6 +5,7 @@ const endpoints = {
     theaterById: '/data/theaters/',
     profile: (userId) => `/data/theaters?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
     create: '/data/theaters',
+    update: '/data/theaters/',
     delete: '/data/theaters/'
 };
 
@@ -22,6 +23,10 @@ export async function getProfile(userId) {
 
 export async function createEvent(data) {
     return api.post(endpoints.allTheaters, data);
+}
+
+export async function updateEvent(id, data) {
+    return api.put(endpoints.update + id, data);
 }
 
 export function deleteEvent(id) {
