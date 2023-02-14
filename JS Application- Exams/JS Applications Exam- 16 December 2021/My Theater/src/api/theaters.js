@@ -4,7 +4,8 @@ const endpoints = {
     allTheaters: '/data/theaters?sortBy=_createdOn%20desc&distinct=title',
     theaterById: '/data/theaters/',
     profile: (userId) => `/data/theaters?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
-    create: '/data/theaters'
+    create: '/data/theaters',
+    delete: '/data/theaters/'
 };
 
 export async function getAllTheaters() {
@@ -21,4 +22,8 @@ export async function getProfile(userId) {
 
 export async function createEvent(data) {
     return api.post(endpoints.allTheaters, data);
+}
+
+export function deleteEvent(id) {
+    return api.del(endpoints.delete + id);
 }
