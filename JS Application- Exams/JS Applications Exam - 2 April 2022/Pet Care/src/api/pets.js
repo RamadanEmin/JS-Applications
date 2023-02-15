@@ -4,6 +4,7 @@ const endpoints = {
     allPets: '/data/pets?sortBy=_createdOn%20desc&distinct=name',
     petById: '/data/pets/',
     create: '/data/pets',
+    update: '/data/pets/',
     delete: '/data/pets/',
     add: '/data/donation',
     allDonationCount: (petId) => `/data/donation?where=petId%3D%22${petId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getPetById(id) {
 
 export async function createPet(data) {
     return api.post(endpoints.allPets, data);
+}
+
+export async function updatePet(id, data) {
+    return api.put(endpoints.update + id, data);
 }
 
 export async function deletePet(id) {
