@@ -10,7 +10,6 @@ import { logout } from './api/users.js';
 import { catalogPage } from './views/catalog.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
-import { editPage } from './views/edit.js';
 
 page(addSession);
 page(addRender);
@@ -22,7 +21,6 @@ page('/logout', onLogout );
 page('/catalog', catalogPage );
 page('/create', createPage );
 page('/details/:id', detailsPage );
-page('/edit/:id', editPage );
 
 page.start();
 
