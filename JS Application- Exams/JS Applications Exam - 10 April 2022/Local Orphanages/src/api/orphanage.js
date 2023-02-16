@@ -5,6 +5,7 @@ const endpoints = {
     materialById: '/data/posts/',
     myPosts: (userId) => `/data/posts?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
     create: '/data/posts',
+    update: '/data/posts/',
     delete: '/data/posts/',
     make: '/data/donations',
     totalDonation: (postId) => `/data/donations?where=postId%3D%22${postId}%22&distinct=_ownerId&count`,
@@ -25,6 +26,10 @@ export async function getMyPosts(userId) {
 
 export async function createMaterial(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function updateMaterial(id, data) {
+    return api.put(endpoints.update + id, data);
 }
 
 export async function deleteMaterial(id) {

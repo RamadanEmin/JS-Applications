@@ -10,6 +10,7 @@ import { registerPage } from './views/register.js';
 import { logout } from './api/users.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 
 page(addSession);
 page(addRender);
@@ -21,6 +22,7 @@ page('/register', registerPage);
 page('/logout', onLogout);
 page('/create', createPage); 
 page('/details/:id', detailsPage);
+page('/edit/:id', editPage);
 
 page.start();
 
