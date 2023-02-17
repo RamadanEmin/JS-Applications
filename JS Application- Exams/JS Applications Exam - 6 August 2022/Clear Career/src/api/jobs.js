@@ -4,6 +4,7 @@ const endpoints = {
     offerById : '/data/offers/',
     allOffers: '/data/offers?sortBy=_createdOn%20desc',
     create: '/data/offers',
+    update : '/data/offers/',
     delete : '/data/offers/',
     addAppl : '/data/applications',
     totalAppl : (offerId) => `/data/applications?where=offerId%3D%22${offerId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getAllOffers() {
 
 export async function createNewOffer(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function updateOffer(offerId, data) {
+    return api.put(endpoints.update + offerId, data);
 }
 
 export async function deleteOffer(offerId) {
