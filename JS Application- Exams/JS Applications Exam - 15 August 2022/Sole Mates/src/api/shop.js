@@ -4,6 +4,7 @@ const endpoints = {
     shoeById: '/data/shoes/',
     allShoes: '/data/shoes?sortBy=_createdOn%20desc',
     add: '/data/shoes',
+    search: '/data/shoes?where=',
     update: '/data/shoes/',
     delete: '/data/shoes/'
 };
@@ -26,4 +27,8 @@ export async function updateShoe(shoeId, data) {
 
 export async function deleteShoe(shoeId) {
     return api.del(endpoints.delete + shoeId);
+}
+
+export async function searchShoe(searchText) {
+    return api.get(endpoints.search + encodeURIComponent(`brand LIKE "${searchText}"`));
 }
