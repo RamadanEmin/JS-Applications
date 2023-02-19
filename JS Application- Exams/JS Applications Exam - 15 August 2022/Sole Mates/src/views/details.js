@@ -1,7 +1,7 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as shopServices from '../api/shop.js';
 
-const detailsTemplate = (shoe, isOwner) => html`
+const detailsTemplate = (shoe, isOwner, onDelete) => html`
 <section id="details">
     <div id="details-wrapper">
         <p id="details-title">Shoe Details</p>
@@ -21,7 +21,7 @@ const detailsTemplate = (shoe, isOwner) => html`
         ${isOwner
             ? html `<div id="action-buttons">
                         <a href="/edit/${shoe._id}" id="edit-btn">Edit</a>
-                        <a href="javascript:void(0)" id="delete-btn">Delete</a>
+                        <a @click=${onDelete} href="javascript:void(0)" id="delete-btn">Delete</a>
                     </div>`
             : nothing
         }
@@ -36,5 +36,11 @@ export async function detailsPage(ctx) {
 
     const isOwner = ctx.user && ctx.user._id === shoe._ownerId;
 
-    ctx.render(detailsTemplate(shoe, isOwner));
+    ctx.render(detailsTemplate(shoe, isOwner, onDelete));
+
+    async function onDelete(){
+        await shopServices.deleteShoe(shoeId);
+
+        ctx.page.redirect('/catalog');
+    }
 }
