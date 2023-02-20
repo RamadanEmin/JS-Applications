@@ -4,6 +4,7 @@ const endpoints = {
     albumById: '/data/albums/',
     allAlbums: '/data/albums?sortBy=_createdOn%20desc',
     addAlbum: '/data/albums',
+    update: '/data/albums/',
     delete: '/data/albums/',
     add: '/data/likes',
     likes: (albumId) => `/data/likes?where=albumId%3D%22${albumId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getAllAlbums() {
 
 export async function addNewAlbum(data) {
     return api.post(endpoints.addAlbum, data);
+}
+
+export async function updateAlbum(albumId, data) {
+    return api.put(endpoints.update + albumId, data);
 }
 
 export async function deleteAlbum(albumId) {
