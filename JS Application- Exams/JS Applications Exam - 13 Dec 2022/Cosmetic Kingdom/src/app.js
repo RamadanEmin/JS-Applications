@@ -8,6 +8,7 @@ import { catalogPage } from './views/catalog.js';
 import { registerPage } from './views/register.js';
 import { loginPage } from './views/login.js';
 import { logout } from './api/users.js';
+import { createPage } from './views/create.js';
 
 page(addSession);
 page(addRender);
@@ -17,6 +18,7 @@ page('/catalog', catalogPage);
 page('/register', registerPage);
 page('/login', loginPage);
 page('/logout', onLogout);
+page('/create', createPage);
 
 page.start();
 
