@@ -4,6 +4,7 @@ const endpoints = {
     product: '/data/products/',
     allProducts: '/data/products?sortBy=_createdOn%20desc',
     add: '/data/products',
+    update: '/data/products/',
     delete: '/data/products/',
     buy: '/data/bought',
     pressed: (productId, userId) => `/data/bought?where=productId%3D%22${productId}%22%20and%20_ownerId%3D%22${userId}%22&count`,
@@ -20,6 +21,10 @@ export async function getAllProducts() {
 
 export async function addNewProduct(data) {
     return api.post(endpoints.add, data);
+}
+
+export async function updateProduct(productId, data) {
+    return api.put(endpoints.update + productId, data);
 }
 
 export async function deleteProduct(productId) {
