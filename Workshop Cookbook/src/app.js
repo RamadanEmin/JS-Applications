@@ -25,4 +25,5 @@ page('/login', preloadLoginData, loginView);
 page('/register', preloadRegisterData, registerView);
 page('/logout', logout);
 
+
 page.start();
