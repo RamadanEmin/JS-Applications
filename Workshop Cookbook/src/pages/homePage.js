@@ -1,5 +1,5 @@
-import {homeTemplate} from "../templates/homeTemplate.js"
+import { homeTemplate } from "../templates/homeTemplate.js";
 
-export async function homeView(ctx){
-  ctx.renderTemplate(homeTemplate(ctx.recentRecipes))
+export async function homeView(ctx) {
+  ctx.renderTemplate(homeTemplate(ctx.recentRecipes, ctx.userData));
 }

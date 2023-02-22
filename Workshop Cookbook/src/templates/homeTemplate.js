@@ -1,6 +1,6 @@
 import { html, nothing } from "../../node_modules/lit-html/lit-html.js";
 
-export const homeTemplate = (recentRecipes) => html`
+export const homeTemplate = (recentRecipes, userData) => html`
 <section id="home">
     <div class="hero">
         <h2>Welcome to My Cookbook</h2>
@@ -18,9 +18,12 @@ export const homeTemplate = (recentRecipes) => html`
     <footer class="section-title">
         <p>Browse all recipes in the <a href="/catalog">Catalog</a></p>
     </footer>
-     <footer class="section-title">
-     <p><a href="/register">Sign up</a> and start cooking !</p>
-     </footer>
+    ${userData 
+        ? nothing
+        : html` <footer class="section-title">
+                <p><a href="/register">Sign up</a> and start cooking !</p>
+                </footer>`}
+     
 </section>`;
 
 const recentRecipe = (recipe) => html`

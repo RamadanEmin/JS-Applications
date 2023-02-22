@@ -1,10 +1,11 @@
-import { render } from "../../node_modules/lit-html/lit-html.js"
-const container = document.querySelector(`#main-content`)
+import { render } from "../../node_modules/lit-html/lit-html.js";
+const container = document.querySelector(`#main-content`);
 
 export const renderMiddleware = (ctx, next) => {
-  ctx.showLoader()
+  ctx.showLoader();
   ctx.renderTemplate = (template) => {
-    ctx.hideLoader()
-    render(template, container)}
-  next()
+    ctx.hideLoader();
+    render(template, container);
+  }
+  next();
 }
