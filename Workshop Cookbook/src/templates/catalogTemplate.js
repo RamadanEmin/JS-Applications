@@ -17,6 +17,7 @@ const recipePreview = (recipe) => html`
 <a class="card" href=${`/details/${recipe._id}`}> <article class="preview">
     <div class="title">
         <h2>${recipe.name}</h2>
+        <span><img src="../../assets/thumbs-up-2.svg" height="50" width="50"> ${recipe.likes}</span>
     </div>
     <div class="small"><img src="${recipe.img.startsWith(`assets`) ? `/${recipe.img}` : `${recipe.img}`}"></div>
     </article>
