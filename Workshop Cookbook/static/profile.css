@@ -1,0 +1,75 @@
+.userInfo {
+    width: 500px;
+    margin: 120px auto 12px;
+    background-color: #fff;
+    padding: 0 20px 20px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    box-shadow: 2px 10px 1.5em 5px black;
+    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+    text-align: center;
+    height: 200px;
+  }
+  
+  .userInfo > h2 {
+    padding-top: -20px;
+  }
+  
+  .avatar {
+    border-radius: 100px;
+    overflow: hidden;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    margin: auto;
+    top: -60px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 0 13px #f0f0f0;
+    -webkit-box-shadow: 0 0 0 13px #f0f0f0;
+    -moz-box-shadow: 0 0 0 13px #f0f0f0;
+  }
+  
+  .avatar img {
+    width: 150px;
+    height: 150px
+  }
+
+  #profilePic {
+    top: -30px;
+  }
+
+  #viewRecipeBtns {
+      text-align: center;
+  }
+  #myRecipesBtn {
+
+    border-radius: 20px;
+    opacity: 0.8;
+    background-color: chartreuse;
+    color: crimson;
+  }
+
+  #favouriteRecipesBtn {
+    border-radius: 20px;
+    opacity: 0.8;
+    background-color: chartreuse;
+    color: crimson;
+  }
+
+  #myRecipesBtn:hover {
+    opacity: 1;
+      transition: ease-in-out;
+      transition: 0.3s;
+      padding: 20px;
+    }
+
+    #favouriteRecipesBtn:hover {
+        opacity: 1;
+          transition: ease-in-out;
+          transition: 0.3s;
+          padding: 20px;
+        }
+    
