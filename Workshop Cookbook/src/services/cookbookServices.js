@@ -4,7 +4,8 @@ const pageSize = 5;
 const endpoints = {
     getThreeRecent: 'data/recipes?select=' + encodeURIComponent('_id,name,img') + '&sortBy=' + encodeURIComponent('_createdOn desc') + `&pageSize=3`,
     getAllRecipes: 'data/recipes?select=' + encodeURIComponent('_id,name,img'),
-    getAllRecipesCount: 'data/recipes?count'
+    getAllRecipesCount: 'data/recipes?count',
+    addRecipe: `data/recipes`
 };
 
 export async function getThreeRecent() {
@@ -30,4 +31,8 @@ export async function getAllRecipes(page = 1, searchValue) {
         apiRequests.get(recipesCountUrl)
     ]);
     return { recipes, pages: Math.ceil(Number(recipesCount) / pageSize) };
+}
+
+export async function addRecipe(data) {
+    await apiRequests.post(endpoints.addRecipe, data);
 }

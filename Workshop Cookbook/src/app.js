@@ -1,5 +1,6 @@
 import page from "../node_modules/page/page.mjs";
 import { preloadCatalogData } from "./middlewares/pagePreloads/catalogPreload.js";
+import { preloadCreateData } from "./middlewares/pagePreloads/createPreload.js";
 import { preloadHomeData } from "./middlewares/pagePreloads/homePreload.js";
 import { preloadLoginData } from "./middlewares/pagePreloads/loginPreload.js";
 import { navMiddleware } from "./middlewares/navMiddleware.js";
@@ -8,6 +9,7 @@ import { preloadRegisterData } from "./middlewares/pagePreloads/registerPreload.
 import { renderMiddleware } from "./middlewares/renderMiddleware.js";
 import { userDataMiddleware } from "./middlewares/userData.js";
 import { catalogView } from "./pages/catalogPage.js";
+import { createView } from "./pages/createPage.js";
 import { homeView } from "./pages/homePage.js";
 import { loginView } from "./pages/loginPage.js";
 import { registerView } from "./pages/registerPage.js";
@@ -24,5 +26,6 @@ page('/catalog', preloadCatalogData, catalogView);
 page('/login', preloadLoginData, loginView);
 page('/register', preloadRegisterData, registerView);
 page('/logout', logout);
+page('/create', preloadCreateData, createView);
 
 page.start();

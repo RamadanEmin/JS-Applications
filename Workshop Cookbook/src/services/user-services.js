@@ -4,9 +4,7 @@ import { authOperations } from "../utils/authentication.js";
 const endpoints = {
     register: `users/register`,
     login: `users/login`,
-    logout: `users/logout`,
-    getUserDetails: `users/me/`,
-    profile_pictures: `data/profilePictures`
+    logout: `users/logout`
 };
 
 async function registerUser(data) {
@@ -40,25 +38,8 @@ async function logoutUser() {
     authOperations.clearStorage();
 }
 
-async function addProfilePic(data) {
-    let newPic = await apiRequests.post(`${endpoints.profile_pictures}`, data);
-    return newPic;
-}
-
-async function getProfilePic(userId) {
-    let query = `?where=_ownerId%3D%22${encodeURIComponent(userId)}%22`;
-    let pic = await apiRequests.get(endpoints.profile_pictures + query);
-    return pic;
-}
-
-async function updateProfilePic(imageId, data) {
-    await apiRequests.put(`${endpoints.profile_pictures}/${imageId}`, data);
-}
 export const userOperations = {
     registerUser,
     loginUser,
-    logoutUser,
-    addProfilePic,
-    getProfilePic,
-    updateProfilePic
+    logoutUser
 };
