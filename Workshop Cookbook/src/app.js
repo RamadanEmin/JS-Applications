@@ -17,6 +17,8 @@ import { loaderMiddleware } from "./middlewares/loader.js";
 import { preloadMyRecipesData } from "./middlewares/pagePreloads/myRecipesPreload.js";
 import { myRecipesView } from "./pages/myRecipesPage.js";
 import { profileView } from "./pages/profilePage.js";
+import { preloadFavRecipesData } from "./middlewares/pagePreloads/favRecipesPreload.js";
+import { favRecipesView } from "./pages/favRecipesPage.js";
 import { profilePicView } from "./pages/addProfilePicPage.js";
 import { preloadProfileData } from "./middlewares/pagePreloads/profilePreload.js";
 import { changeProfilePicView } from "./pages/changeProfilePicPage.js";
@@ -35,6 +37,7 @@ page('/register', preloadRegisterData, registerView);
 page('/logout', logout);
 page('/create', preloadCreateData, createView);
 page('/profile/my-recipes', preloadMyRecipesData, myRecipesView);
+page('/profile/fav-recipes', preloadFavRecipesData, favRecipesView);
 page('/profile/add-avatar', profilePicView);
 page('/profile/change-avatar', changeProfilePicView);
 
