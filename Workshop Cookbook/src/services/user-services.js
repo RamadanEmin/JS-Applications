@@ -39,15 +39,14 @@ async function logoutUser() {
     authOperations.clearStorage();
 }
 
-async function getProfilePic(userId) {
-    let query = `?where=_ownerId%3D%22${encodeURIComponent(userId)}%22`;
-    let pic = await apiRequests.get(endpoints.profile_pictures + query);
-    return pic;
+async function addProfilePic(data) {
+    let newPic = await apiRequests.post(`${endpoints.profile_pictures}`, data);
+    return newPic;
 }
 
 export const userOperations = {
     registerUser,
     loginUser,
     logoutUser,
-    getProfilePic
+    addProfilePic,
 };

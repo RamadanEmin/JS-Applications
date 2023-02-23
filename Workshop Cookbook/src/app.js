@@ -15,6 +15,7 @@ import { loginView } from "./pages/loginPage.js";
 import { registerView } from "./pages/registerPage.js";
 import { loaderMiddleware } from "./middlewares/loader.js";
 import { profileView } from "./pages/profilePage.js";
+import { profilePicView } from "./pages/addProfilePicPage.js";
 import { preloadProfileData } from "./middlewares/pagePreloads/profilePreload.js";
 import { logout } from "./handlers/logoutHandler.js";
 
@@ -30,5 +31,6 @@ page('/login', preloadLoginData, loginView);
 page('/register', preloadRegisterData, registerView);
 page('/logout', logout);
 page('/create', preloadCreateData, createView);
+page('/profile/add-avatar', profilePicView);
 
 page.start();
