@@ -14,6 +14,8 @@ import { homeView } from "./pages/homePage.js";
 import { loginView } from "./pages/loginPage.js";
 import { registerView } from "./pages/registerPage.js";
 import { loaderMiddleware } from "./middlewares/loader.js";
+import { profileView } from "./pages/profilePage.js";
+import { preloadProfileData } from "./middlewares/pagePreloads/profilePreload.js";
 import { logout } from "./handlers/logoutHandler.js";
 
 page(loaderMiddleware);
@@ -22,6 +24,7 @@ page(renderMiddleware);
 page(navMiddleware);
 page(userDataMiddleware);
 page('/', preloadHomeData, homeView);
+page('/profile', preloadProfileData, profileView);
 page('/catalog', preloadCatalogData, catalogView);
 page('/login', preloadLoginData, loginView);
 page('/register', preloadRegisterData, registerView);
