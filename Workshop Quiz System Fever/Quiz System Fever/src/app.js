@@ -1,9 +1,11 @@
 import { page, render } from './library.js';
 import { loginPage, registerPage } from './pages/author.js';
+import { browsePage } from './pages/browse.js';
 import { logoutPage } from './pages/logout.js';
 import { navPage } from './pages/nav.js';
 import { getUserData } from './util.js';
 import { homePage } from './pages/home.js';
+import { profilePage } from './pages/profile.js';
 
 const root = document.getElementById('content');
 const nav = document.getElementById('titlebar');
@@ -14,6 +16,8 @@ page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', logoutPage);
 page('/', homePage);
+page('/profile', profilePage);
+page('/browse', browsePage);
 
 page.start();
 
