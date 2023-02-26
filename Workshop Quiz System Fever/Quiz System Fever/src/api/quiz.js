@@ -1,5 +1,5 @@
 import * as api from './api.js';
-import { createPointer, } from './data.js';
+import { addOwner, createPointer, } from './data.js';
 import { getSolutionCount } from './solutions.js';
 
 
@@ -32,4 +32,17 @@ export async function getMostRecentQuiz() {
     }
 
     return quiz;
+}
+
+export async function createQuiz(quiz) {
+    const body = addOwner(quiz);
+    return api.post('/classes/Quiz', body);
+}
+
+export async function updateQuiz(id, quiz) {
+    return api.put('/classes/Quiz/' + id, quiz);
+}
+
+export async function deleteQuiz(id) {
+    return api.del('/classes/Quiz/' + id);
 }
