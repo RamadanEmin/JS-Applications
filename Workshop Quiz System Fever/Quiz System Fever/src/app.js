@@ -3,6 +3,7 @@ import { getQuizById } from './api/quiz.js';
 import { page, render } from './library.js';
 import { loginPage, registerPage } from './pages/author.js';
 import { browsePage } from './pages/browse.js';
+import { editorPage } from './pages/editor/editor.js';
 import { logoutPage } from './pages/logout.js';
 import { navPage } from './pages/nav.js';
 import { quizPage } from './pages/quiz/quiz.js';
@@ -26,6 +27,7 @@ page('/browse', browsePage);
 page('/details/:id', getQuiz, detailsPage);
 page('/quiz/:id', getQuiz, quizPage);
 page('/results/:id', getQuiz, resultPage);
+page('/create', editorPage);
 
 page.start();
 
