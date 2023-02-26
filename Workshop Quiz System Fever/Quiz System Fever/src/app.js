@@ -5,6 +5,7 @@ import { loginPage, registerPage } from './pages/author.js';
 import { browsePage } from './pages/browse.js';
 import { logoutPage } from './pages/logout.js';
 import { navPage } from './pages/nav.js';
+import { quizPage } from './pages/quiz/quiz.js';
 import { getUserData } from './util.js';
 import { cube } from './pages/common/loader.js';
 import { homePage } from './pages/home.js';
@@ -22,6 +23,7 @@ page('/logout', logoutPage);
 page('/', homePage);
 page('/browse', browsePage);
 page('/details/:id', getQuiz, detailsPage);
+page('/quiz/:id', getQuiz, quizPage);
 
 
 page.start();
