@@ -8,6 +8,7 @@ import { navPage } from './pages/nav.js';
 import { quizPage } from './pages/quiz/quiz.js';
 import { getUserData } from './util.js';
 import { cube } from './pages/common/loader.js';
+import { resultPage } from './pages/quiz/result.js';
 import { homePage } from './pages/home.js';
 import { detailsPage } from './pages/quiz/details.js';
 
@@ -24,7 +25,7 @@ page('/', homePage);
 page('/browse', browsePage);
 page('/details/:id', getQuiz, detailsPage);
 page('/quiz/:id', getQuiz, quizPage);
-
+page('/results/:id', getQuiz, resultPage);
 
 page.start();
 
