@@ -1,5 +1,11 @@
-import { createPointer } from './data.js';
+import { createPointer, addOwner } from './data.js';
 import * as api from './api.js';
+
+export async function submitSolution(quizId, solution) {
+    const body = addOwner(solution);
+    body.quiz = createPointer('Quiz', quizId);
+    return await api.post('/classes/Solution', body);
+}
 
 export async function getSolutionCount(quizIds) {
     const query = JSON.stringify({ $or: quizIds.map(id => ({ quiz: createPointer('Quiz', id) })) });
