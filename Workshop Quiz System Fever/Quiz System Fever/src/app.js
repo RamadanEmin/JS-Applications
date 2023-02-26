@@ -28,6 +28,7 @@ page('/details/:id', getQuiz, detailsPage);
 page('/quiz/:id', getQuiz, quizPage);
 page('/results/:id', getQuiz, resultPage);
 page('/create', editorPage);
+page('/edit/:id', editorPage);
 
 page.start();
 
