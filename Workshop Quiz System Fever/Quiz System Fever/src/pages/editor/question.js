@@ -1,6 +1,7 @@
 import { updateQuestion, createQuestion as apiCreate } from '../../api/questions.js';
 import { html, render } from '../../library.js';
 import { createOverlay } from '../common/loader.js';
+import { createAnswerList } from './answer.js';
 
 const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="layout">
@@ -14,6 +15,7 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
     <textarea class="input editor-input editor-text" name="text"
         placeholder="Enter question" .value=${data.text}></textarea>
    
+        ${createAnswerList(data, index)}
 </form>`;
 
 const viewTemplate = (data, index, onEdit, onDelete) => html`

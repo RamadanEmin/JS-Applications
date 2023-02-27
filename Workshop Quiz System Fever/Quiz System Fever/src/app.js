@@ -12,6 +12,7 @@ import { cube } from './pages/common/loader.js';
 import { resultPage } from './pages/quiz/result.js';
 import { homePage } from './pages/home.js';
 import { detailsPage } from './pages/quiz/details.js';
+import { profilePage } from './pages/profile.js';
 
 const state = {};
 const root = document.getElementById('content');
@@ -23,6 +24,7 @@ page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', logoutPage);
 page('/', homePage);
+page('/profile', profilePage);
 page('/browse', browsePage);
 page('/details/:id', getQuiz, detailsPage);
 page('/quiz/:id', getQuiz, quizPage);
