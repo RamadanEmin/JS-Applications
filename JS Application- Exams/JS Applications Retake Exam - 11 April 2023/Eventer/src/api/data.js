@@ -4,6 +4,7 @@ const endpoints = {
     event: '/data/events/',
     getAllEvents: '/data/events?sortBy=_createdOn%20desc',
     create: '/data/events',
+    update: '/data/events/',
     delete: '/data/events/',
     people: '/data/going',
     total: (eventId) => `/data/going?where=eventId%3D%22${eventId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getAllEvents() {
 
 export async function addNewEvent(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function updateEvent(eventId, data) {
+    return api.put(endpoints.update + eventId, data);
 }
 
 export async function deleteEvent(eventId) {
