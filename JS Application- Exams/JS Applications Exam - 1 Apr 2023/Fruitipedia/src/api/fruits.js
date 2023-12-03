@@ -28,3 +28,7 @@ export async function updateFruit(fruitId, data) {
 export async function deleteFruit(fruitId) {
     return api.del(endpoints.delete + fruitId);
 }
+
+export async function searchFruits(query) {
+    return api.get(endpoints.search(query));
+}
