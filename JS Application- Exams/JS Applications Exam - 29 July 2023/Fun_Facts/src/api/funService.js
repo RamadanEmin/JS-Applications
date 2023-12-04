@@ -4,6 +4,7 @@ const endpoints = {
     getOne: '/data/facts/',
     getAll: '/data/facts?sortBy=_createdOn%20desc',
     create: '/data/facts',
+    update: '/data/facts/',
     delete: '/data/facts/',
     like: '/data/likes',
     totalLikes: (factId) => `/data/likes?where=factId%3D%22${factId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getAllFacts() {
 
 export async function addNewFact(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function updateFact(factId, data) {
+    return api.put(endpoints.update + factId, data);
 }
 
 export async function deleteFact(factId) {
