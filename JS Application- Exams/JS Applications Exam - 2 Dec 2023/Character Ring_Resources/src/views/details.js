@@ -1,7 +1,7 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as characterService from '../api/characterService.js';
 
-const detailsTemplate = (character, user, isOwner) => html`
+const detailsTemplate = (character, user, isOwner, onDelete, likes, hasLike, onLike) => html`
 <section id="details">
     <div id="details-wrapper">
         <img id="details-img" src=${character.imageUrl} alt="example1" />
@@ -13,16 +13,16 @@ const detailsTemplate = (character, user, isOwner) => html`
                     <p id ="more-info">${character.moreInfo}</p>
                 </div>
             </div>
-            <h3>Is This Useful:<span id="likes">0</span></h3>
+            <h3>Is This Useful:<span id="likes">${likes}</span></h3>
 
-            ${user 
+            ${user && !hasLike
                 ? html`
                     <div id="action-buttons">
                         ${isOwner
                             ? html`
                                     <a href="/edit/${character._id}" id="edit-btn">Edit</a>
-                                    <a href="javascript:void(0)" id="delete-btn">Delete</a>`
-                            : html`<a href="javascript:void(0)" id="like-btn">Like</a>`
+                                    <a @click=${onDelete} href="javascript:void(0)" id="delete-btn">Delete</a>`
+                            : html`<a @click=${onLike} href="javascript:void(0)" id="like-btn">Like</a>`
                         }
                         </div>`
                 : nothing}
@@ -31,12 +31,36 @@ const detailsTemplate = (character, user, isOwner) => html`
 </section>
 `;
 
+
 export async function detailsPage(ctx) {
     const characterId = ctx.params.id;
+    const request = [
+        characterService.getCharacter(characterId),
+        characterService.getTotalLikes(characterId)
+    ];
 
-    const character = await characterService.getCharacter(characterId);
+    if (ctx.user) {
+        request.push(characterService.getLikesFromUser(characterId, ctx.user._id));
+    }
+
+    const [character, likes, hasLike] = await Promise.all(request);
 
     const isOwner = ctx.user && ctx.user._id === character._ownerId;
 
-    ctx.render(detailsTemplate(character, ctx.user, isOwner));
+    ctx.render(detailsTemplate(character, ctx.user, isOwner, onDelete, likes, hasLike, onLike));
+
+    async function onDelete() {
+        const choice = confirm('Are you sure you want to delete this character?');
+        if (choice) {
+            await characterService.deleteCharacter(characterId);
+
+            ctx.page.redirect('/catalog');
+        }
+    }
+
+    async function onLike() {
+        await characterService.addLike({ characterId });
+
+        ctx.page.redirect('/details/' + characterId)
+    }
 }
