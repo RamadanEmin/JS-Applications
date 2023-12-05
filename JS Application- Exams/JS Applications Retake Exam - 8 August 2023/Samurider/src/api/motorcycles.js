@@ -6,6 +6,7 @@ const endpoints = {
     create: '/data/motorcycles',
     update: '/data/motorcycles/',
     delete: '/data/motorcycles/',
+    search:(query)=>`/data/motorcycles?where=model%20LIKE%20%22${query}%22`
 };
 
 export async function getMotorcycle(motorcycleId) {
@@ -26,4 +27,8 @@ export async function updateMotorcycle(motorcycleId, data) {
 
 export async function deleteMotorcycle(motorcycleId) {
     return api.del(endpoints.delete + motorcycleId);
+}
+
+export async function searchMotorcycle(query) {
+    return api.get(endpoints.search(query));
 }
