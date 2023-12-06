@@ -4,6 +4,7 @@ const endpoints = {
     getOne: '/data/characters/',
     getAll: '/data/characters?sortBy=_createdOn%20desc',
     create: '/data/characters',
+    update: '/data/characters/',
     delete: '/data/characters/',
     like: '/data/useful',
     totalLikes: (characterId) => `/data/useful?where=characterId%3D%22${characterId}%22&distinct=_ownerId&count`,
@@ -20,6 +21,10 @@ export async function getAllCharacters() {
 
 export async function addNewCharacter(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function updateCharacter(characterId, data) {
+    return api.put(endpoints.update + characterId, data);
 }
 
 export async function deleteCharacter(characterId) {
